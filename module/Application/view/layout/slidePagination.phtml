@@ -1,0 +1,32 @@
+<?php if ($this->pageCount): ?>
+<div class="paginationControl">
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->url($this->route, array('action'=>$this->action, 'id' => $this->previous)); ?>">
+    &lt; Prethodna
+  </a> |
+<?php else: ?>
+  <span class="disabled">&lt; Prethodna</span> |
+<?php endif; ?>
+
+<!-- Numbered page links -->
+<?php foreach ($this->pagesInRange as $page): ?>
+  <?php if ($page != $this->current): ?>
+    <a href="<?php echo $this->url($this->route, array('action'=>$this->action, 'id' => $page)); ?>">
+        <?php echo $page; ?>
+    </a> |
+  <?php else: ?>
+    <?php echo $page; ?> |
+  <?php endif; ?>
+<?php endforeach; ?>
+
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo $this->url($this->route, array('action'=>$this->action, 'id' => $this->next)); ?>">
+    Sledeća &gt;
+  </a>
+<?php else: ?>
+  <span class="disabled">Sledeća &gt;</span>
+<?php endif; ?>
+</div>
+<?php endif; ?>

@@ -1,0 +1,366 @@
+body{
+   background: url(../img/newspaper.jpg);
+   background-repeat: no-repeat;
+   background-attachment: fixed;
+
+}
+.jumbotron{
+   background: url(../img/nis.jpg) no-repeat;
+   background-size: cover;
+   min-height: 300px;
+   width: 100%;
+   position: relative;
+   padding:0 0 0 0;	
+}
+
+.navbar.navbar-inverse a.navbar-brand
+{
+   color:#FF5050;
+   margin-right:50px;
+}
+.nav-logo{
+	margin-right:90px;
+}
+a.current{
+	background: url(../img/tooplate_menu_hover.png) bottom center no-repeat;
+}
+a.select-category{
+	color:#fff;
+}
+.select_menu{
+	color: #9d9d9d;
+	background-color: transparent;
+	border: none;	
+}
+.options{
+   color:#fff;
+   background-color:#fff;
+}
+.post-box{
+   background-color:#fff; 
+   width:100%;
+   padding:5px 15px 10px 15px;
+   margin-bottom:20px;
+   border-radius: 5px;
+	
+}
+.post-box-header{ 
+   width:100%;
+   border-bottom: 1px solid #4b2a06; 
+}
+.post-box-header p.date {
+   display: inline;
+   font-size: 19px;
+   padding: 5px 0 0 15px;
+   color: #FFFF66;
+   text-shadow: 1px 1px 1px #000;
+}
+.post-box-header p.category{
+   display: inline;
+   margin-left:50px;
+   color: #cf560d;
+   font-family: Lucida Handwriting;
+   font-size: 25px;
+   padding: 0 0 0 0;	
+}
+.post-box-post-header{
+   border-bottom: 1px solid #4b2a06;
+   padding:5px;
+}
+.post-box img.img-responsive.full{
+	width:100%;
+	height:auto;
+	border:1px solid #d8852b;
+	margin-bottom:10px;
+}
+.dropdown{
+	display:inline;
+}
+.btn.btn-primary {
+	background-color:red;
+	height:25px;
+}   
+.post-box h2 { 
+   color: #d8852b; 
+   font-size: 30px; 
+   margin-bottom: 40px;
+   display:block;
+   text-align: center;
+   text-shadow: 2px 2px 4px #000000	
+}
+@media (min-width: 451px) {   
+	.post-box-body{	   
+	    width:100%;	
+	    display:inline-block;
+        }
+}
+@media (max-width: 450px) {
+	.post-box-body{
+	    width:100%;	   
+	    display:block;
+        }
+}
+@media (min-width: 451px) {
+	.post-box-body p{
+	     margin-left:230px;	   
+	     margin-right:15px;
+		 word-wrap:break-word;
+         }
+}
+@media (max-width: 450px) { 
+	.post-box-body p{	   
+	     margin:0;   
+	     display:block;
+		 margin-top:10px;
+		 word-wrap:break-word;
+         }
+}
+
+.img-box img.img-responsive{     
+	margin:auto;  
+	height:150px
+}
+
+@media (max-width: 450px){
+  .img-box{
+        width:210px;
+	    height:150px;   
+	    margin:auto; 	    
+        }
+}
+@media (min-width: 451px){
+  .img-box{
+        width:210px;
+	    height:150px;	   
+	    float:left;	    
+        }
+}
+
+.post-box-video {  
+   max-width: 100%;
+   height: auto;
+}
+.post-box-footer{
+   padding: 5px 5px 5px 5px; 
+   border-top: 1px solid #4b2a06; 
+   margin-top: 20px;
+   margin-bottom:5px;
+   width:100%;   
+}
+.post-box-footer span{
+	display:inline-block;
+}
+.pagination{
+	width:100%;
+	text-align:center;
+	color:#000;
+}
+.pagination a{
+	color:#000;
+}
+.login{
+   background-color:#fff;
+   padding:5px 15px 10px 15px;
+   max-width:350px;
+   height:320px;
+   border-bottom: 1px solid #4b2a06;
+   border-radius: 5px;
+   border:1px solid black;
+}
+.login a{
+	color:#6600ff;
+	margin-top: 10px;
+	width:100%;
+	display:block;
+}
+.login-header{ 
+   height:40px;
+   width:100%;
+   padding: 8px 5px 0 5px; 
+   border-bottom: 1px solid #4b2a06;
+   font-size: 15px;
+   font-weight: 800;  
+}
+.login-lab label{
+	margin-top: 20px;
+}
+.login-bttn{
+	margin-top: 10px;
+}
+
+.facebook-groups{
+	width: 100%;
+	background-color: #fff;
+	max-width:350px;
+	padding:10px 0 20px 10px;
+	margin-bottom:20px;
+	border-radius: 5px;
+	border:1px solid black;
+}
+.facebook-groups h3{
+	margin-left: 10px;
+	font-family:Big Caslon;
+	font-weight:bold;
+}
+.facebook-groups ul.list-group{
+	margin-top:15px;
+}
+.facebook-groups ul{
+	list-style-type: none;
+	margin-left: 10px;
+	color:#cccc00;
+}
+.facebook-groups ul li a{
+	font-family:Hoefler Text;
+	color:#999900;
+}
+.baner{
+	height: 250px;
+	width: 100%;
+	max-width:350px;
+	position: relative;
+	margin-bottom:20px;
+	
+}
+.baner img.img-responsive{
+	
+	width:100%;
+	height:250px;
+	margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+	border-radius: 5px;
+	border:1px solid black;
+}
+.contact{
+	background-color:#fff;
+	padding:20px 10px 20px 15px;
+	color: #cf560d;
+	width:100%;
+	margin-bottom:20px;
+	border-radius: 5px;
+	border:1px solid black;
+}
+.contact h2{
+    color:#ffb366;
+	font-family:impact;
+	font-size:24;
+}
+.contact-form{
+	margin-top:40px;
+	color: #999900;
+}
+.contact p{
+   font-family:Big Caslon;
+}
+
+.contact-form h2{
+    color:#ffb366;
+	font-family:impact;
+	font-size:24;
+}
+.gallery{
+	border:3px solid red;
+	margin-bottom:20px;
+}
+.gallery ul.list-group{	
+	list-style-type: none;
+	margin:auto;
+	text-align:center;
+}
+.gallery  img{
+	display:inline-block;
+	width:300px;
+	height:200px;
+}
+.gallery li{
+	margin-top:10px;
+}
+.confirm{
+	border-radius:15px;
+    padding: 20px;
+	background:#ffe6ff; 
+}
+.google-map{
+	width:99.5%;
+	margin-top:20px;
+	border:1px solid #000;
+	margin-bottom:20px;
+}
+
+.comments {
+	list-style: none;
+	margin: 0; 
+	padding: 0; 
+}
+
+.commentbox { 
+	border: 1px solid #000;  
+	background: #ffff1a; 
+	margin-top: 10px;
+	border-radius:15px;
+	padding:10px;
+}
+
+.comment_text .comment_author { 
+	font-size: 16px; 
+	color: #ff6600; 
+	margin-bottom: 10px; 
+	font-weight:bold;
+}
+
+.comment_text .date { 
+	font-size: 12px; 
+	font-weight: normal; 
+	color: #9b8e79; 
+	padding-left: 10px; 
+}
+
+#comment_image a { 
+	float: right;
+	padding: 15px 15px;
+	width:20px;
+	background: url(../img/close.png) no-repeat top right; 
+}
+.button-meni{
+	margin-bottom:20px;
+}
+.user-find{
+	border:1px solid #000;
+	padding:10px;
+	margin-bottom:20px;
+	background-color:#fff;
+}
+.user-find p{
+	font-size:17px;
+	color: #cf560d;
+	font-weight:800;
+}
+.user-find span{
+	color:#000;
+	margin-left:10px;
+}
+.panel-category{
+	background:#FFA1FF;
+	width:80%;
+	display:inline-block;
+	margin-bottom:10px;
+	padding:10px;
+	border-radius:5px;
+}
+.panel-button{
+	display:inline-block;
+	margin-bottom:10px;
+}
+.response-buttons{
+	display:inline;
+}
+
+ @media (min-width: 301px){
+   .povuci {
+       float: right;
+    }
+}

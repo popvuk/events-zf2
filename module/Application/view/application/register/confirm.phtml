@@ -1,0 +1,80 @@
+
+<body>
+
+ <div class="container" >
+  <!-- meni -->
+<?php 
+  $select = $this->select;
+  $select->prepare();
+  $select->setAttribute('action', $this->url('application/index', array('controller'=>'index', 'action' => 'sort')));
+  $select->setAttribute('method', 'post');
+  $select->setAttribute('id','moja');
+  $select->setAttribute('role','form');
+  $select->setAttribute('class','form-inline');
+  echo $this->form()->openTag($select);
+ ?>
+
+     <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>                        
+            </button>
+            <div class="nav-logo">
+              <img class="img-responsive" src="<?php echo $this->basePath('img/en-logo.png') ?>"/>
+            </div>
+         </div>
+         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li><a href="<?php echo $this->url('application/default');?>" >Početna</a></li>
+              <?php if ($this->korisnik == null) :?>
+              <li  class="active"><a href="<?php echo $this->url('application/register',array('action'=>'index'));?>" class="current">Registracija</a></li>
+              <?php endif?>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'gallery'));?>" >Galerija</a></li>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'contact'));?>">Kontakt</a></li>
+              <li ><a><?php echo $this->formElement($select->get('kategorije')->setAttributes(array('class'=>'select_menu','onChange'=>'document.forms["moja"].submit()'))->setOptions(array('empty_option'=>'Kategorije','value_options'=>$this->kat)));?></a></li>
+              <?php if ($this->korisnik != null) :?>
+              <li ><a href="<?php echo $this->url('application/index', array('action'=>'logout'));?>">Logout</a></li>
+              <li ><a href="<?php echo $this->url('application/korisnik', array('action'=>'index'));?>"><?php echo $this->korisnik?></a></li>
+              <?php endif?>        
+           </ul>
+        </div>
+      </div>
+     </nav>
+
+ <?php echo $this->form()->closeTag()?>
+ <!-- kraj menija -->
+    
+  <div class="row">
+    <div class="col-md-2"></div><!-- prva kolona prazna -->
+    <div class="col-md-7"><!-- druga kolona forma-->
+      <div class="confirm">
+        Hvala vam što ste se registrovali. Možete se logovati <a href="<?php echo $this->url('application/default');?>" class="current">OVDE</a>             
+       </div>
+    </div>   
+    <div class="col-md-3"><!-- treca kolona login -->       
+       <div class="baner">
+          <img class="img-responsive" src="<?php echo $this->basePath('img/events.jpg') ?>"/>
+       </div>
+	   <div class="facebook-groups">
+	     <h3>U gradu...</h3>	  
+	     <ul class="list-group">
+	     <?php foreach($this->face as $grupa) :?>
+	       <?php if($grupa->id_tipa==1):?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'index','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li> 
+	       <?php else :?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'video','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li>
+	      <?php endif;?>  
+	     <?php endforeach;?>
+        </ul>
+	  </div>
+   
+    </div>
+  
+  </div>
+</div>
+
+</body>
+</html>

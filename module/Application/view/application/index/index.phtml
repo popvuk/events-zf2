@@ -1,0 +1,147 @@
+
+<body>
+
+ <div class="container" >
+  <!-- meni -->
+  <?php 
+  $select=$this->select;
+  $select->prepare();
+  $select->setAttribute('action', $this->url('application/index', array('controller'=>'index', 'action' => 'sort')));
+  $select->setAttribute('method', 'post');
+  $select->setAttribute('id','moja');
+  $select->setAttribute('role','form');
+  $select->setAttribute('class','form-inline');
+  echo $this->form()->openTag($select);
+ ?>
+ 
+
+     <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>                        
+            </button>
+            <div class="nav-logo">
+              <img class="img-responsive" src="<?php echo $this->basePath('img/en-logo.png') ?>"/>
+            </div>
+         </div>
+         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li class="active"><a href="<?php echo $this->url('application/default');?>" class="current">Početna</a></li>
+              <?php if ($this->korisnik == null) :?>
+              <li><a href="<?php echo $this->url('application/register',array('action'=>'index'));?>">Registracija</a></li>
+              <?php endif?>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'gallery'));?>">Galerija</a></li>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'contact'));?>">Kontakt</a></li>
+              <li><a><?php echo $this->formElement($select->get('kategorije')->setAttributes(array('class'=>'select_menu','onChange'=>'document.forms["moja"].submit()'))->setOptions(array('label_attributes' => array('class' => 'options'),'empty_option'=>'Kategorije','value_options'=>$this->kat)));?></a></li>
+              <?php if ($this->korisnik != null) :?>
+              <li ><a href="<?php echo $this->url('application/index', array('action'=>'logout'));?>">Logout</a></li>
+              <li ><a href="<?php echo $this->url('application/korisnik', array('action'=>'index'));?>"><?php echo $this->korisnik?></a></li>
+              <?php endif?>        
+           </ul>
+        </div>
+      </div>
+     </nav>
+ 
+  <?php echo $this->form()->closeTag()?>
+  <!-- kraj menija -->
+  
+  <div class="row">
+    <div class="col-md-2"></div><!-- prva kolona prazna -->
+    <div class="col-md-7"><!-- druga kolona postovi-->
+       <?php foreach ($this->posts as $post):?>
+	   <div class="post-box">  
+	      <div class="post-box-header">
+		    <p class="date">
+		        <?php $data = new \DateTime($post->dat_objave);
+			          echo $format = $data->format('d.m.Y'); ?>
+			</p>
+			<p class="category"><?php echo $post->naziv_kat?></p>
+		  </div>
+          <h2><?php echo $post->naslov ?></h2>
+          <div class="post-box-body">
+           <div class="img-box">
+                <img class="img-responsive" src="<?php echo $this->url('application/korisnik', array('action'=>'prikazSlike', 'id' => $post->slika,));?>" />
+            </div>
+             <p>
+                <?php if(strlen($post->tekst) > 460)
+                        echo substr($post->tekst,0,460).'...';
+                        else 
+                        echo $post->tekst ?>
+             </p>
+			 <br style="clear: both"/>
+          </div>     
+		  <div class="post-box-footer">	    
+            <span>Postovao<a href="<?php echo $this->url('application/show', array('action'=>'show', 'korime'=>$post->korime));?>"><?php echo " ".$post->korime?></a></span>
+            <span class="povuci"><a href=<?php echo $this->url('application/post', array('action'=>'index', 'id' => $post->id_post));?> >Pročitaj više</a></span>          
+		  </div>
+	  </div>
+	  <?php endforeach?> 
+	  <div class="pagination">           
+          <?php echo $this->paginationControl( $this->posts, 'Sliding', 'paginator-slide', array('route'=>'application/index', 'action'=>$this->action)); ?>
+      </div>
+    </div>
+    <div class="col-md-3"><!-- treca kolona login -->       
+        <div class="login">
+		  <div class="login-header">Loguj se </div>
+		  <?php if ($this->error): ?>
+               <p class="error">Pogrešno korisničko ime i/ili lozinka! Molim pokušajte ponovi</p>
+          <?php endif ?>
+          <?php 
+              $form = $this->form;
+              $form->prepare();
+              $form->setAttribute('action', $this->url('application/index', array('controller'=>'index', 'action' => 'login')));
+              $form->setAttribute('method', 'post');
+              $form->setAttribute('role','form');
+              echo $this->form()->openTag($form); ?>
+          <div class="form-group">
+             <label class="login-lab"><?php echo $this->formLabel($form->get('korime')); ?></label>
+             <?php 
+                 echo $this->formElement($form->get('korime')->setAttributes(array('class'=>'form-control input-sm')));
+                 echo $this->formElementErrors($form->get('korime'));?>
+          </div>
+          <div class="form-group">
+             <label class="login-lab"><?php echo $this->formLabel($form->get('sifra')); ?></label>
+             <?php 
+                 echo $this->formElement($form->get('sifra')->setAttributes(array('class'=>'form-control input-sm')));
+                 echo $this->formElementErrors($form->get('sifra'));
+              ?>
+          </div>
+          <div class="form-group">
+              <div class="login-bttn">
+              <?php
+                 echo $this->formElement($form->get('submit')->setAttributes(array('class'=>'btn btn-default')));
+                 echo $this->formElementErrors($form->get('submit'));?>
+              </div>
+         </div>
+            <?php echo $this->form()->closeTag() ?> 
+         <a href="<?php echo $this->url('application/register',array('action'=>'index'));?>" >Nemaš kreiran nalog? Registruj se!</a>              
+	   </div>
+
+	   <div class="facebook-groups">
+	     <h3>U gradu...</h3>
+	  
+	     <ul class="list-group">
+	     <?php foreach($this->face as $grupa) :?>
+	       <?php if($grupa->id_tipa==1):?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'index','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li> 
+	       <?php else :?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'video','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li>
+	      <?php endif;?>  
+	     <?php endforeach;?>
+        </ul>
+	  </div>
+   
+    </div>
+  
+  </div>
+</div>
+<?php if(count($this->flashMessages)) : ?>
+    <?php foreach ($this->flashMessages as $msg) : ?>
+    <?php echo "<script>alert('$msg');</script>"; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+</body>
+

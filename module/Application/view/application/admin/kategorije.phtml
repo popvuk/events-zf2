@@ -1,0 +1,118 @@
+
+<body>
+
+ <div class="container" >
+  <!-- meni -->
+<?php 
+  $select = $this->select;
+  $select->prepare();
+  $select->setAttribute('action', $this->url('application/index', array('controller'=>'index', 'action' => 'sort')));
+  $select->setAttribute('method', 'post');
+  $select->setAttribute('id','moja');
+  $select->setAttribute('role','form');
+  $select->setAttribute('class','form-inline');
+  echo $this->form()->openTag($select);
+ ?>
+
+     <nav class="navbar navbar-inverse">
+       <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>
+               <span class="icon-bar"></span>                        
+            </button>
+            <div class="nav-logo">
+              <img class="img-responsive" src="<?php echo $this->basePath('img/en-logo.png') ?>"/>
+            </div>
+         </div>
+         <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+              <li ><a href="<?php echo $this->url('application/default');?>" >Početna</a></li>
+              <?php if ($this->korisnik == null) :?>
+              <li><a href="<?php echo $this->url('application/register',array('action'=>'index'));?>">Registracija</a></li>
+              <?php endif?>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'gallery'));?>">Galerija</a></li>
+              <li><a href="<?php echo $this->url('application/index',array('action'=>'contact'));?>">Kontakt</a></li>
+              <li><a><?php echo $this->formElement($select->get('kategorije')->setAttributes(array('class'=>'select_menu','onChange'=>'document.forms["moja"].submit()'))->setOptions(array('label_attributes' => array('class' => 'options'),'empty_option'=>'Kategorije','value_options'=>$this->kat)));?></a></li>
+              <?php if ($this->korisnik != null) :?>
+              <li ><a href="<?php echo $this->url('application/index', array('action'=>'logout'));?>">Logout</a></li>
+              <li class="active"><a href="<?php echo $this->url('application/korisnik', array('action'=>'index'));?>"><?php echo $this->korisnik?></a></li>
+              <?php endif?>        
+           </ul>
+        </div>
+      </div>
+     </nav>
+
+ <?php echo $this->form()->closeTag()?>
+ <!-- kraj menija -->
+    
+  <div class="row">
+    <div class="col-md-2"></div><!-- prva kolona prazna -->
+    <div class="col-md-7"><!-- druga kolona forma-->
+      <div class="contact">
+	
+		<?php
+           $form = $this->form;
+           $form->prepare();
+           $form->setAttribute('action', $this->url(NULL,array('controller'=>'admin', 'action' => 'addKat')));
+           $form->setAttribute('method', 'post');
+           $form->setAttribute('role','form');
+           $form->setAttribute('class','form-horizontal');
+           echo $this->form()->openTag($form);
+         ?>
+         <div class="contact-form">
+         <h2 style="margin-bottom: 30px">Dodaj kategoriju</h2>
+           <div class="form-group">
+             <label class="control-label col-sm-2"><?php echo $this->formLabel($form->get('naziv_kat')); ?></label>
+             <div class="col-sm-8">
+                <?php 
+                    echo $this->formElement($form->get('naziv_kat')->setAttributes(array('class'=>'form-control input-sm')));
+                    echo $this->formElementErrors($form->get('naziv_kat')->setAttributes(array('class'=>'form-control input-sm')));
+                 ?>
+             </div>
+           </div>
+           <div class="form-group">        
+             <div class="col-sm-offset-2 col-sm-10">
+               <?php echo $this->formElement($form->get('submit')->setAttributes(array('class'=>'btn btn-default')));
+                     echo $this->formElementErrors($form->get('submit'));?>
+             </div>
+           </div>
+          </div>
+         <?php echo $this->form()->closeTag()?> 
+         <br><br>      
+         <?php foreach ($this->kats as $kat):?>
+           <div class="panel-category">
+              <span><?php echo $kat->naziv_kat?></span>              
+           </div>
+           <div class="panel-button offset-2">
+              <a href="<?php echo $this->url('application/admin',array('action' => 'delKat', 'id'=>$kat->id_kat))?>" 
+                 onclick = "javascript: return confirm('UPOZIRENJE! Brisanjem kategorije obrisaće se i postovi i komentari koji pripadaju kategoriji');" class="btn btn-danger">Izbriši</a>
+           </div>         
+         <?php endforeach?>   
+       </div>
+    </div>   
+    <div class="col-md-3"><!-- treca kolona login -->       
+       <div class="baner">
+          <img class="img-responsive" src="<?php echo $this->basePath('img/events.jpg') ?>"/>
+       </div>
+	   <div class="facebook-groups">
+	     <h3>U gradu...</h3>	  
+	     <ul class="list-group">
+	     <?php foreach($this->face as $grupa) :?>
+	       <?php if($grupa->id_tipa==1):?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'index','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li> 
+	       <?php else :?>
+	       <li><a href="<?php echo $this->url('application/facebook',array('action'=>'video','id'=>$grupa->id_grupe));?>"><?php echo $grupa->naziv_grupe ?></a></li>
+	      <?php endif;?>  
+	     <?php endforeach;?>
+        </ul>
+	  </div>
+   
+    </div>
+  
+  </div>
+</div>
+
+</body>
+</html>
