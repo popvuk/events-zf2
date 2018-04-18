@@ -1,5 +1,5 @@
 
-<img src="info/1.jpg" height="300">Pocetna strana
+<img src="info/1.jpg" height="300">
 <img src="info/2.jpg" height="300">
 <img src="info/3.jpg" height="300">
 <img src="info/4.jpg" height="300">
