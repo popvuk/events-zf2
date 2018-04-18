@@ -1,4 +1,10 @@
-<img src="info/1.jpg" height="100">
+
+<img src="info/1.jpg" height="300">
+<img src="info/2.jpg" height="300">
+<img src="info/3.jpg" height="300">
+<img src="info/4.jpg" height="300">
+<img src="info/5.jpg" height="300">
+<img src="info/6.jpg" height="300">
 ### Apache Setup
 
 To setup apache, setup a virtual host to point to the public/ directory of the
